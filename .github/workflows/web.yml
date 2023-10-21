@@ -1,4 +1,4 @@
-name:  AHJ dnd task3
+name:  AHJ frontend 
 
 on: [push, pull_request]
 
@@ -29,17 +29,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install yarn
-        run: npm install yarn
-
       - name: Install dependencies
-        run: yarn
+        run: npm install 
 
       - name: Run linters and test
-        run: yarn lint 
+        run: npm run lint 
 
       - name: Build
-        run: yarn build
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
