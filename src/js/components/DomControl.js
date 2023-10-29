@@ -8,6 +8,7 @@ export default class DomControl {
     this.board = document.querySelector('.board')
     this.addForm = new AddForm()
     this.confirmForm = new ConfirmFrom()
+    this.url = 'https://ahj-server.onrender.com' //'http://192.168.31.190:7070'
 
     document.querySelector('.board__add').addEventListener('click', this.onAdd)
   }
@@ -17,7 +18,7 @@ export default class DomControl {
   }
 
   async getTickets () {
-    return await fetch('http://192.168.31.190:7070?method=allTickets')
+    return await fetch(this.url + '?method=allTickets')
       .then(resp => resp.json())
       .then(res => {
         this.clear()
@@ -50,7 +51,7 @@ export default class DomControl {
     const ticketId = event.target.closest('.board__task').dataset.id
     const ticked = this.tickets.find(el => el.id === ticketId)
     ticked.status = event.target.checked
-    fetch('http://192.168.31.190:7070?method=changeStatus', { method: 'PATCH', body: JSON.stringify(ticked) })
+    fetch(this.url + '?method=changeStatus', { method: 'PATCH', body: JSON.stringify(ticked) })
   }
 
   onRedact = (event) => {
@@ -68,7 +69,7 @@ export default class DomControl {
   delete (ticket) {
     this.tickets = this.tickets.filter(el => el !== ticket)
     ticket.remove()
-    fetch(`http://192.168.31.190:7070?method=deleteTicket&id=${ticket.id}`, { method: 'DELETE' })
+    fetch(this.url + `?method=deleteTicket&id=${ticket.id}`, { method: 'DELETE' })
   }
 
   onDetail = (event) => {
@@ -84,7 +85,7 @@ export default class DomControl {
       return
     }
 
-    fetch(`http://192.168.31.190:7070?method=ticketById&id=${ticket.id}`)
+    fetch(this.url + `?method=ticketById&id=${ticket.id}`)
       .then((resp) => resp.json())
       .then((res) => {
         const detail = this.showDetail(res.description)
