@@ -17,7 +17,7 @@ export default class DomControl {
   }
 
   async getTickets () {
-    return await fetch('http://192.168.31.18:7070?method=allTickets')
+    return await fetch('http://192.168.31.190:7070?method=allTickets')
       .then(resp => resp.json())
       .then(res => {
         this.clear()
@@ -50,7 +50,7 @@ export default class DomControl {
     const ticketId = event.target.closest('.board__task').dataset.id
     const ticked = this.tickets.find(el => el.id === ticketId)
     ticked.status = event.target.checked
-    fetch('http://192.168.31.18:7070?method=changeStatus', { method: 'PATCH', body: JSON.stringify(ticked) })
+    fetch('http://192.168.31.190:7070?method=changeStatus', { method: 'PATCH', body: JSON.stringify(ticked) })
   }
 
   onRedact = (event) => {
@@ -68,7 +68,7 @@ export default class DomControl {
   delete (ticket) {
     this.tickets = this.tickets.filter(el => el !== ticket)
     ticket.remove()
-    fetch(`http://192.168.31.18:7070?method=deleteTicket&id=${ticket.id}`, { method: 'DELETE' })
+    fetch(`http://192.168.31.190:7070?method=deleteTicket&id=${ticket.id}`, { method: 'DELETE' })
   }
 
   onDetail = (event) => {
@@ -84,7 +84,7 @@ export default class DomControl {
       return
     }
 
-    fetch(`http://192.168.31.18:7070?method=ticketById&id=${ticket.id}`)
+    fetch(`http://192.168.31.190:7070?method=ticketById&id=${ticket.id}`)
       .then((resp) => resp.json())
       .then((res) => {
         const detail = this.showDetail(res.description)

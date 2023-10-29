@@ -51,7 +51,7 @@ export default class AddForm {
     if (change) {
       formName.innerText = 'Изменить тикет'
       inputTittle.value = ticket.name
-      fetch(`http://192.168.31.18:7070?method=ticketById&id=${ticket.id}`)
+      fetch(`http://192.168.31.190:7070?method=ticketById&id=${ticket.id}`)
         .then((resp) => resp.json())
         .then((res) => {
           description.value = res.description
@@ -74,7 +74,7 @@ export default class AddForm {
       const ticketMethod = ticket.id ? 'updateTicket' : 'createTicket'
       const massage = ticket.id ? 'Обновлено' : 'Создано'
 
-      fetch('http://192.168.31.18:7070?method=' + ticketMethod, {
+      fetch('http://192.168.31.190:7070?method=' + ticketMethod, {
         method: fetchMethod,
         body: JSON.stringify(ticket)
       })
