@@ -4,7 +4,7 @@ export default class AddForm {
     this.inputTittle = null
     this.inputDescription = null
     this.successMassage = null
-    this.url = 'https://ahj-server.onrender.com'//'http://192.168.31.190:7070'
+    this.url = 'https://ahj-server.onrender.com'// 'http://192.168.31.190:7070'
   }
 
   createItemForm (callback, change = false, ticket = {}) {

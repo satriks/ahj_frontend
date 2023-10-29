@@ -8,7 +8,7 @@ export default class DomControl {
     this.board = document.querySelector('.board')
     this.addForm = new AddForm()
     this.confirmForm = new ConfirmFrom()
-    this.url = 'https://ahj-server.onrender.com' //'http://192.168.31.190:7070'
+    this.url = 'https://ahj-server.onrender.com' // 'http://192.168.31.190:7070'
 
     document.querySelector('.board__add').addEventListener('click', this.onAdd)
   }
